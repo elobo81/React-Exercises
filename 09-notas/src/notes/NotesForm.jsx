@@ -1,6 +1,9 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
+import { useContext } from "react";
+import { NotesContext } from "../contexts/NotesContext";
 
 function NotesForm(){
+    const { add } = useContext(NotesContext);
     return(
 <Formik initialValues={{ title:"", message:""}}
 validate={ values=> {
@@ -12,6 +15,14 @@ validate={ values=> {
     }
     return errors;
 }}
+onSubmit={
+    (values, { setSubmitting})=> {
+        add(values.title, values.message);
+        setSubmitting(false);
+        values.title = "";
+        values.message = "";
+    }
+}
 >
 {
     ({ isSubmitting })=> (
