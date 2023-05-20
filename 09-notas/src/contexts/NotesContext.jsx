@@ -4,9 +4,9 @@ import useNotes from "../hooks/useNotes";
 export const NotesContext = createContext();
 
 export function NotesProvider({children}){
-    const { notes, add } = useNotes();
+    const { notes, add, remove } = useNotes();
     return(
-        <NotesContext.Provider value={ {notes, add}}>
+        <NotesContext.Provider value={ {notes, add, remove}}>
             {children}
         </NotesContext.Provider>
     );
